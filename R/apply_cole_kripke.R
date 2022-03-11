@@ -105,7 +105,7 @@ apply_cole_kripke_30sec_ <- function(data) {
 apply_cole_kripke_10sec_ <- function(data) {
   data %>%
     mutate(
-      sleep = .00001 * (
+      score_ck = .00001 * (
         550 * lag(.data$count, 4, default = 0) +
           378 * lag(.data$count, 3, default = 0) +
           413 * lag(.data$count, 2, default = 0) +
@@ -113,7 +113,7 @@ apply_cole_kripke_10sec_ <- function(data) {
           1736 * .data$count +
           287 * lead(.data$count, 1, default = 0) +
           309 * lead(.data$count, 2, default = 0)),
-      sleep = if_else(.data$sleep < 1, "S", "W")
+      sleep = if_else(.data$score_ck < 1, "S", "W")
     )
 }
 
