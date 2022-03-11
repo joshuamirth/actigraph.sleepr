@@ -105,12 +105,12 @@ apply_sadeh_ <- function(data) {
   data %>%
     mutate(
       count = pmin(.data$axis1 / 100, 300),
-      sleep = (
+      score_sadeh = (
         7.601
         - 0.065 * roll_avg(.data$count)
           - 1.08 * roll_nats(.data$count)
           - 0.056 * roll_std(.data$count)
           - 0.703 * log(.data$count + 1)),
-      sleep = if_else(.data$sleep > -4, "S", "W")
+      sleep_sadeh = if_else(.data$sleep > 0, "S", "W")
     )
 }
