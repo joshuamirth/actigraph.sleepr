@@ -69,7 +69,7 @@ apply_cole_kripke <- function(agdb) {
 apply_cole_kripke_1min_ <- function(data) {
   data %>%
     mutate(
-      sleep = .001 * (
+      score_ck = .001 * (
         106 * lag(.data$count, 4, default = 0) +
           54 * lag(.data$count, 3, default = 0) +
           58 * lag(.data$count, 2, default = 0) +
@@ -77,7 +77,7 @@ apply_cole_kripke_1min_ <- function(data) {
           230 * .data$count +
           74 * lead(.data$count, 1, default = 0) +
           67 * lead(.data$count, 2, default = 0)),
-      sleep = if_else(.data$sleep < 1, "S", "W")
+      sleep_ck = if_else(.data$score_ck < 1, "S", "W")
     )
 }
 
@@ -87,7 +87,7 @@ apply_cole_kripke_1min_ <- function(data) {
 apply_cole_kripke_30sec_ <- function(data) {
   data %>%
     mutate(
-      sleep = .0001 * (
+      score_ck = .0001 * (
         50 * lag(.data$count, 4, default = 0) +
           30 * lag(.data$count, 3, default = 0) +
           14 * lag(.data$count, 2, default = 0) +
@@ -95,7 +95,7 @@ apply_cole_kripke_30sec_ <- function(data) {
           121 * .data$count +
           8 * lead(.data$count, 1, default = 0) +
           50 * lead(.data$count, 2, default = 0)),
-      sleep = if_else(.data$sleep < 1, "S", "W")
+      sleep_ck = if_else(.data$score_ck < 1, "S", "W")
     )
 }
 
@@ -113,7 +113,7 @@ apply_cole_kripke_10sec_ <- function(data) {
           1736 * .data$count +
           287 * lead(.data$count, 1, default = 0) +
           309 * lead(.data$count, 2, default = 0)),
-      sleep = if_else(.data$score_ck < 1, "S", "W")
+      sleep_ck = if_else(.data$score_ck < 1, "S", "W")
     )
 }
 
