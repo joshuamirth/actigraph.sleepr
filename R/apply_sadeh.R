@@ -111,6 +111,6 @@ apply_sadeh_ <- function(data) {
           - 1.08 * roll_nats(.data$count)
           - 0.056 * roll_std(.data$count)
           - 0.703 * log(.data$count + 1)),
-      sleep_sadeh = if_else(.data$sleep > 0, "S", "W")
+      sleep_sadeh = if_else(.data$score_sadeh > 0, "S", "W")
     )
 }
